@@ -1,0 +1,317 @@
+/* =========================================================
+   GMeds / Plaza Medis — Neumorphism Redesign (v2, softer)
+   Visual identity: Biru tua #245A8D, Biru muda #4FA7CF,
+   Teal/Tosca #46B6B5, Abu-abu gelap #4A525C, Putih #FFFFFF
+   Font: Poppins
+   ========================================================= */
+
+:root{
+  --bg-base:#E7ECF1;
+
+  --shadow-dark: rgba(29, 64, 97, 0.20);
+  --shadow-dark-tight: rgba(29, 64, 97, 0.14);
+  --shadow-light: rgba(255,255,255, 0.85);
+  --shadow-light-soft: rgba(255,255,255, 0.55);
+
+  --blue-deep:#245A8D;
+  --blue-light:#4FA7CF;
+  --teal:#46B6B5;
+  --gray-dark:#4A525C;
+  --white:#FFFFFF;
+
+  --text-heading:#1d3f5c;
+  --text-body:#4A525C;
+  --text-muted:#7c8994;
+
+  --radius-lg:26px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --font-head:'Poppins', sans-serif;
+  --font-body:'Poppins', sans-serif;
+  --max-w:1120px;
+
+  --raised:
+    16px 16px 34px var(--shadow-dark),
+    -14px -14px 30px var(--shadow-light),
+    5px 5px 10px var(--shadow-dark-tight);
+  --raised-sm:
+    8px 8px 18px var(--shadow-dark),
+    -7px -7px 16px var(--shadow-light);
+  --pressed:
+    inset 8px 8px 16px var(--shadow-dark),
+    inset -8px -8px 16px var(--shadow-light);
+  --pressed-sm:
+    inset 5px 5px 10px var(--shadow-dark),
+    inset -5px -5px 10px var(--shadow-light);
+}
+
+*, *::before, *::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:24px; }
+
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--text-body);
+  background:
+    radial-gradient(1100px 680px at 10% -12%, rgba(79,167,207,0.20), transparent 58%),
+    radial-gradient(900px 700px at 102% 6%, rgba(70,182,181,0.18), transparent 55%),
+    radial-gradient(1000px 780px at 46% 112%, rgba(36,90,141,0.14), transparent 60%),
+    var(--bg-base);
+  background-attachment:fixed;
+  min-height:100vh;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+img{ max-width:100%; height:auto; display:block; }
+
+h1,h2,h3{
+  font-family:var(--font-head);
+  color:var(--text-heading);
+  line-height:1.2;
+  margin:0 0 18px;
+  font-weight:600;
+  letter-spacing:-0.005em;
+}
+h1{ font-size:clamp(2rem, 1.4rem + 2.6vw, 3.2rem); }
+h2{ font-size:clamp(1.4rem, 1.15rem + 1.4vw, 2.1rem); }
+h3{ font-size:1.1rem; margin-bottom:10px; color:var(--blue-deep); }
+p{ margin:0 0 16px; max-width:62ch; }
+.lead{ font-size:1.08rem; color:var(--text-body); }
+strong{ color:var(--blue-deep); font-weight:600; }
+em{ font-style:italic; color:var(--teal); }
+
+/* ===== Layout ===== */
+.wrap{ max-width:var(--max-w); margin:0 auto; padding:0 24px; }
+.wrap--narrow{ max-width:760px; text-align:center; }
+.section{ position:relative; padding:88px 0; }
+.section--tint{ background:linear-gradient(180deg, rgba(36,90,141,0.05), transparent); }
+.section--banner{ text-align:center; padding:110px 0; }
+.section--cta{ padding:100px 0; }
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:52px;
+  align-items:center;
+}
+.grid-2--wide{ align-items:stretch; }
+.center{ text-align:center; max-width:760px; margin-left:auto; margin-right:auto; }
+
+/* ===== Neumorphic core ===== */
+.glass, .panel{
+  background:var(--bg-base);
+  border:none;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--raised);
+  transition:box-shadow .4s ease, transform .4s ease;
+}
+.panel{ padding:40px; }
+.panel--video{ display:flex; align-items:center; justify-content:center; padding:16px; }
+.panel--form{ text-align:center; padding:48px 40px; }
+
+.eyebrow-plain{
+  color:var(--text-muted);
+  font-size:.95rem;
+  margin-bottom:18px;
+  font-weight:500;
+}
+
+/* ===== Image frames (pressed-in neumorphic) ===== */
+.img-frame{
+  position:relative;
+  padding:12px;
+  border-radius:var(--radius-lg);
+  background:var(--bg-base);
+  box-shadow:var(--pressed);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.img-frame img{ border-radius:calc(var(--radius-lg) - 10px); width:100%; }
+.img-frame:hover{ transform:translateY(-4px); }
+.img-frame--kicker{ max-width:280px; margin-bottom:26px; }
+.img-frame--hero{ max-width:520px; margin-left:auto; }
+.img-frame--banner{ max-width:640px; margin:0 auto 34px; }
+
+.video-frame{ position:relative; width:100%; aspect-ratio:16/9; border-radius:calc(var(--radius-lg) - 10px); overflow:hidden; box-shadow:var(--pressed-sm); }
+.video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+/* ===== Buttons (raised, pressable) ===== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:15px 30px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:.98rem;
+  text-decoration:none;
+  font-family:var(--font-head);
+  transition:transform .2s ease, box-shadow .2s ease;
+  border:none;
+  cursor:pointer;
+}
+.btn-primary{
+  background:linear-gradient(150deg, #55c7c6 0%, #2f9694 55%, #24807e 100%);
+  color:#ffffff;
+  box-shadow:
+    10px 10px 22px var(--shadow-dark),
+    -8px -8px 18px var(--shadow-light),
+    0 6px 16px rgba(36,128,126,0.35);
+}
+.btn-primary:hover{ transform:translateY(-3px); box-shadow:12px 14px 28px var(--shadow-dark), -8px -8px 18px var(--shadow-light), 0 10px 22px rgba(36,128,126,0.4); }
+.btn-primary:active{
+  transform:translateY(0);
+  box-shadow:
+    inset 5px 5px 10px #1f6d6c,
+    inset -5px -5px 10px #3fb3b1;
+}
+.btn-large{ padding:18px 36px; font-size:1.05rem; }
+
+/* ===== Lists ===== */
+.check-list{ list-style:none; margin:0 0 18px; padding:0; display:grid; gap:12px; }
+.check-list li{
+  position:relative;
+  padding-left:32px;
+  color:var(--text-body);
+}
+.check-list li::before{
+  content:"";
+  position:absolute; left:0; top:5px;
+  width:18px; height:18px;
+  border-radius:6px;
+  background:var(--bg-base);
+  box-shadow:var(--pressed-sm);
+}
+.check-list--strong li::before{ background:var(--teal); box-shadow:2px 2px 6px var(--shadow-dark), -1px -1px 3px var(--shadow-light); }
+.check-list--positive li::before{ background:var(--teal); box-shadow:2px 2px 6px var(--shadow-dark), -1px -1px 3px var(--shadow-light); }
+.check-list--negative li::before{ background:var(--gray-dark); box-shadow:2px 2px 6px var(--shadow-dark), -1px -1px 3px var(--shadow-light); }
+.check-list--neutral li::before{ background:var(--blue-light); box-shadow:2px 2px 6px var(--shadow-dark), -1px -1px 3px var(--shadow-light); }
+
+/* ===== Feature grid ===== */
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:28px;
+  margin-top:40px;
+}
+.feature-card{
+  padding:28px;
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.feature-card:hover{ transform:translateY(-6px); box-shadow:20px 20px 40px var(--shadow-dark), -16px -16px 34px var(--shadow-light), 5px 5px 10px var(--shadow-dark-tight); }
+.feature-img{
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  margin-bottom:18px;
+  box-shadow:var(--pressed-sm);
+  padding:8px;
+}
+.feature-card p{ margin:0; font-size:.96rem; }
+
+/* ===== Steps ===== */
+.steps-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:28px;
+  margin-top:40px;
+}
+.step-card{ padding:32px; position:relative; }
+.step-card .img-frame{ margin-bottom:20px; }
+.step-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:42px; height:42px;
+  border-radius:50%;
+  background:linear-gradient(150deg, #4fc2c1, #2f9694);
+  color:#ffffff;
+  font-family:var(--font-head);
+  font-weight:700;
+  margin-bottom:14px;
+  box-shadow:var(--raised-sm);
+}
+
+/* ===== Reveal on scroll ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+.reveal-delay-1.is-visible{ transition-delay:.12s; }
+.reveal-delay-2.is-visible{ transition-delay:.24s; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .img-frame:hover, .feature-card:hover, .btn-primary:hover{ transform:none; }
+}
+
+/* ===== WhatsApp floating widget ===== */
+.wa-widget{ position:fixed; right:20px; bottom:20px; z-index:1000; display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
+.wa-button{
+  width:62px; height:62px; border-radius:50%;
+  background:var(--bg-base);
+  color:#25d366;
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--raised-sm);
+  animation:wa-pulse 2.8s ease-in-out infinite;
+}
+@keyframes wa-pulse{
+  0%,100%{ box-shadow:var(--raised-sm); }
+  50%{ box-shadow:var(--raised-sm), 0 0 0 10px rgba(37,211,102,0.14); }
+}
+.wa-panel{
+  width:280px;
+  padding:0;
+  overflow:hidden;
+  background:var(--bg-base);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--raised);
+  transform-origin:bottom right;
+  transform:scale(.9) translateY(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.wa-widget.open .wa-panel{ opacity:1; transform:scale(1) translateY(0); pointer-events:auto; }
+.wa-panel__header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px;
+  color:var(--blue-deep);
+  font-weight:600;
+  font-family:var(--font-head);
+}
+.wa-close{ background:none; border:none; color:var(--text-muted); font-size:1.3rem; cursor:pointer; line-height:1; }
+.wa-panel__body{ padding:6px 18px 14px; display:flex; flex-direction:column; gap:10px; }
+.wa-bubble{
+  background:var(--bg-base);
+  border-radius:14px 14px 14px 4px;
+  padding:10px 14px;
+  font-size:.88rem;
+  color:var(--text-body);
+  box-shadow:var(--pressed-sm);
+}
+.wa-open{
+  display:block; text-align:center;
+  margin:14px 18px 18px;
+  padding:12px;
+  border-radius:999px;
+  background:linear-gradient(150deg, #34d476, #1fae59);
+  color:#ffffff;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:var(--raised-sm);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  .grid-2{ grid-template-columns:1fr; gap:32px; }
+  .img-frame--hero{ max-width:420px; margin:0 auto; }
+  .feature-grid, .steps-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 640px){
+  .section{ padding:56px 0; }
+  .wrap{ padding:0 18px; }
+  .feature-grid, .steps-grid{ grid-template-columns:1fr; }
+  .panel{ padding:26px; }
+  .wa-panel{ width:min(84vw, 280px); }
+  .btn{ width:100%; }
+}
