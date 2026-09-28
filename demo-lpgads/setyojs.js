@@ -3,7 +3,7 @@
 
   /* URL Web App Google Apps Script (lihat gmeds-form-apps-script.gs).
      Isi setelah deploy; jika dikosongkan, form tetap jalan ke WhatsApp saja. */
-  var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyWiUdwONyGy2F0Ud6EVw2nryV1YV7k15I-buy9qvgE0Q15hcCCC0_QqmQbQDrLicpECw/exec";
+  var SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwveA3xDcKPbghayHlzNnpGQd2QMUPlMzNXek-IL4PyWtosQOVajHdA9nMeXz54Fg09CQ/exec";
 
   document.addEventListener("DOMContentLoaded", init);
 
