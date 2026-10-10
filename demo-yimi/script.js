@@ -12,18 +12,15 @@
   var WA_NUMBER = '62881036517460'; // tujuan WhatsApp Ustadzah Nina (format API, tanpa 0 / +)
 
   /*
-   * TRACKING (BELUM AKTIF)
-   * Setelah snippet Google tag (gtag.js) dipasang di <head> index.html dengan ID resmi,
-   * ubah enabled menjadi true. Jangan mengisi ID palsu.
+   * TRACKING via Google Tag Manager (container GTM-P3LXZDBS, dipasang di index.html).
+   * Script ini hanya mengirim custom event ke dataLayer. Tag Google Ads / GA4 dan
+   * trigger-nya diatur di dalam GTM (Trigger: Custom Event dengan nama event di bawah).
    * Event dikirim tanpa data pribadi (tanpa nama orang tua / anak / nomor / isi pertanyaan).
-   * Untuk konversi Google Ads, buat konversi di akun Ads lalu isi sendTo dengan
-   * label konversi resmi (format "AW-XXXXXXXXX/LABEL"), contoh di fungsi trackEvent.
    */
   var ANALYTICS = {
-    enabled: false,
+    enabled: true,
     ctaEventName: 'click_whatsapp_cta',
-    formEventName: 'submit_pmb_form_whatsapp',
-    adsConversionSendTo: '' // contoh: 'AW-XXXXXXXXX/LABEL' (isi hanya jika sudah resmi)
+    formEventName: 'submit_pmb_form_whatsapp'
   };
 
   /* Pesan WhatsApp berdasarkan konteks tombol */
@@ -50,12 +47,16 @@
   }
 
   function trackEvent(name, params) {
-    if (!ANALYTICS.enabled || typeof window.gtag !== 'function') { return; }
+    if (!ANALYTICS.enabled) { return; }
     try {
-      window.gtag('event', name, params || {});
-      if (ANALYTICS.adsConversionSendTo) {
-        window.gtag('event', 'conversion', { send_to: ANALYTICS.adsConversionSendTo });
+      window.dataLayer = window.dataLayer || [];
+      var payload = { event: name };
+      if (params) {
+        for (var k in params) {
+          if (Object.prototype.hasOwnProperty.call(params, k)) { payload[k] = params[k]; }
+        }
       }
+      window.dataLayer.push(payload);
     } catch (e) { /* tracking tidak boleh mengganggu halaman */ }
   }
 
