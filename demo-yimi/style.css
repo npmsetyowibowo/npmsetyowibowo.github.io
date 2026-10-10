@@ -242,6 +242,8 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
 .footer-contact strong { color: var(--deep); }
 .footer-copy { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(7, 89, 133, .15); font-size: .85rem; }
 .footer-copy p { margin: 0; }
+.footer-copy .credit { margin-top: 6px; }
+.footer-copy .credit a { color: var(--deep); font-weight: 600; }
 
 /* ---------- Floating WhatsApp (mobile) ---------- */
 .wa-float {
